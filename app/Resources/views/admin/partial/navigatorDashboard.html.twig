@@ -1,0 +1,19 @@
+<div class="container" style="height: 46px;">
+    <div id="container_dashboards" data-iduser="{{ userSession.getIdUser() }}">
+        <ul class="nav nav-tabs" id="container_dashboards_ul">
+            <li><a href="{{ path('admin_dashboard') }}">Add new dashboard</a></li>
+        </ul>
+    </div>
+</div>
+
+{% block templates %}
+    <script type="text/template" id="template_dashboards">
+        <li role="presentation" class="active">
+            {% if admin %}
+                <a href="/admin/dashboards/config/<%= model.id %>"><%= model.name %></a>
+            {% else %}
+                <a href="/web/dashboards/<%= model.id %>"><%= model.name %></a>
+            {% endif %}
+        </li>
+    </script>
+{% endblock %}

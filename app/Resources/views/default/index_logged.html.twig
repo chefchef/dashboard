@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>Homepage</span></h1>
+            </div>
+
+            <div id="status">
+                <p>
+                    <a href="{{ path('admin_dashboard') }}">
+                            Admin
+                    </a>
+                </p>
+                <p>
+                    <a href="{{ path('logout') }}">
+                        Logout User
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

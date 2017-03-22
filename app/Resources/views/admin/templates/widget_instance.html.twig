@@ -1,0 +1,7 @@
+<script type="text/template" id="template_widget_instance">
+    {%  if admin == 1 %}
+    <span class="glyphicon glyphicon-remove" id="destroyWidget" aria-hidden="true"></span>
+    {%  endif %}
+    <div class="well2"><%= widgetinstance %></div>
+    <span class="label label-<%= modelData.status %>"><%= modelData.status %></span>
+</script>

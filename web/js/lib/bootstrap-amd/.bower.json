@@ -1,0 +1,48 @@
+{
+  "name": "bootstrap-amd",
+  "version": "1.0.1+bootstrap.3.3.4",
+  "license": "MIT",
+  "description": "AMD-ready versions of Bootstrap jQuery plugins",
+  "keywords": [
+    "bootstrap",
+    "amd",
+    "js"
+  ],
+  "homepage": "https://github.com/InvisiLabs/bootstrap-amd",
+  "authors": [
+    "Dmytro Chekaliuk <d.chekaliuk@invisilabs.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "main": [
+    "lib/affix.js",
+    "lib/alert.js",
+    "lib/bootstrap.js",
+    "lib/button.js",
+    "lib/carousel.js",
+    "lib/collapse.js",
+    "lib/dropdown.js",
+    "lib/modal.js",
+    "lib/popover.js",
+    "lib/scrollspy.js",
+    "lib/tab.js",
+    "lib/tooltip.js",
+    "lib/transition.js"
+  ],
+  "ignore": [
+    "/.*"
+  ],
+  "dependencies": {
+    "jquery": ">= 2.1.0"
+  },
+  "_release": "1.0.1+bootstrap.3.3.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.1+bootstrap.3.3.4",
+    "commit": "7ed04b9013c3c6bc01f182c9c41158b57abdc1e0"
+  },
+  "_source": "git://github.com/InvisiLabs/bootstrap-amd.git",
+  "_target": "*",
+  "_originalSource": "bootstrap-amd"
+}

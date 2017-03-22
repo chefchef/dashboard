@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'AppBundle::form.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+
+{% block body %}
+
+    <div id="container">
+        <div id="status" class="container">
+
+            <h2 class="form-signin-heading">Add new dashboard</h2>
+            <p>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+                {{ form_end(form) }}
+            </p>
+        </div>
+        <div class="container">
+
+            <button class="btn btn-primary" type="button" id="dashboardsButton">
+                Dashboards <span class="badge" id="dashboardsCount">{{ stats.numDashboards }}</span>
+            </button>
+
+            <button class="btn btn-primary" type="button" id="widgetsButton">
+                    Widgets <span class="badge" id="widgetsCount">{{ stats.numWidgets }}</span>
+                </button>
+
+            <div id="container_dashboards" class="alert alert-info"
+                 data-iduser="{{ userSession.getIdUser() }}"
+                 style="width: 20%; margin: auto;display:none;"><ul id="container_dashboards_ul"></ul></div>
+            <div id="container_widgets" class="alert alert-info" style="width: 20%; margin: auto;display:none;"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" data-main="{{ asset('js/mainAddDashboardAdmin.js') }}"
+            src="{{ asset('js/lib/requirejs/require.js') }}"></script>
+{% endblock %}
+
+{% block templates %}
+    <script type="text/template" id="template_dashboards">
+        <li style="list-style-type: none;"><strong><%= model.name %></strong>
+            <a href="/web/dashboards/<%= model.id %>"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></a>
+            <a href="/admin/dashboards/config/<%= model.id %>"><span class="glyphicon glyphicon-cog" aria-hidden="true" title="Edit"></span></a></li>
+    </script>
+<script type="text/template" id="template_widget">
+    <li style="list-style-type: none;">Widget <%= model.name %></li>
+</script>
+{% endblock %}

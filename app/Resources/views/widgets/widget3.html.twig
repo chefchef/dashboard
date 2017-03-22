@@ -1,0 +1,12 @@
+<h3>CPU</h3>
+<div class="progress">
+    <div class="progress-bar progress-bar-danger" style="width: <%= data.user %>%" aria-valuenow="<%= data.user %>" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only"><%= data.user %></span>
+    </div>
+    <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: <%= data.sys %>%" aria-valuenow="<%= data.sys %>" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only"><%= data.sys %></span>
+    </div>
+    <div class="progress-bar progress-bar-success" style="width: <%= data.idle %>%" aria-valuenow="<%= data.idle %>" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only"><%= data.idle %>%</span>
+    </div>
+</div>

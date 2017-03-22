@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include ':admin/partial:navigatorDashboard.html.twig' with {'admin':0} %}
+
+    {% include ':admin/partial:dashboard.html.twig' with {'admin':0} %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" data-main="{{ asset('js/mainWeb.js') }}"
+            src="{{ asset('js/lib/requirejs/require.js') }}"></script>
+{% endblock %}
+
+{% block templates %}
+    <script type="text/template" id="template_widget_instance">
+            <div class="well2"><%= widgetinstance %></div>
+            <span class="label label-<%= modelData.status %>"><%= modelData.status %></span>
+    </script>
+{% endblock %}

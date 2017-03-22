@@ -1,0 +1,12 @@
+<h3>MEMORY</h3>
+<div class="progress">
+    <div class="progress-bar progress-bar-success" style="width: <%= data.free %>%" aria-valuenow="<%= data.free %>" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only"><%= data.free %></span>
+    </div>
+    <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: <%= data.other %>%" aria-valuenow="<%= data.other %>" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only"><%= data.other %></span>
+    </div>
+    <div class="progress-bar progress-bar-danger" style="width: <%= data.used %>%" aria-valuenow="<%= data.used %>" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only"><%= data.used %>%</span>
+    </div>
+</div>

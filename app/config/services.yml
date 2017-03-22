@@ -1,0 +1,109 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.controller_session.user_session:
+        class: AppBundle\Resources\Session\UserSession
+        arguments: [ @session ]
+
+    # use case
+
+   ## user
+    app.model_users_use_cases.register_user_use_case:
+        class: AppBundle\Application\Users\UseCases\RegisterUserUseCase
+        arguments: [ @app.infrastructure_user.mysql_user_repository ]
+
+    app.model_users_use_cases.login_user_use_case:
+        class: AppBundle\Application\Users\UseCases\LoginUserUseCase
+        arguments: [ @app.infrastructure_user.mysql_user_repository ]
+
+    ## dashboard
+    app.model_dashboards_use_cases.create_dashboard_use_case:
+        class: AppBundle\Application\Dashboards\UseCases\CreateDashboardUseCase
+        arguments: [ @app.infrastructure_dashboards.mysql_dasboard_repository ]
+
+    app.model_dashboards_use_cases.list_dashboard_use_case:
+        class: AppBundle\Application\Dashboards\UseCases\ListDashboardsUseCase
+        arguments: [ @app.infrastructure_dashboards.mysql_dasboard_repository ]
+
+    app.application_dashboards_use_cases.add_widget_to_dashboard_use_case:
+        class: AppBundle\Application\Dashboards\UseCases\AddWidgetToDashboardUseCase
+        arguments: [ @app.infrastructure_dashboards.mysql_dasboard_repository, @app.infrastructure_widget_instance_repository.mysql_widget_instance_repository ]
+
+    app.application_dashboards_use_cases.fetch_dashboard_use_case:
+        class: AppBundle\Application\Dashboards\UseCases\FetchDashboardUseCase
+        arguments: [ @app.infrastructure_dashboards.mysql_dasboard_repository ]
+
+    ## widget instances
+
+    app.application_widgets_instance.list_widget_instance_use_case:
+        class: AppBundle\Application\WidgetsInstance\ListWidgetInstanceUseCase
+        arguments: [ @app.infrastructure_widget_instance_repository.mysql_widget_instance_repository ]
+
+    app.application_widgets_instance_use_cases.fetch_widget_instance_use_case:
+        class: AppBundle\Application\WidgetsInstance\UseCases\FetchWidgetInstanceUseCase
+        arguments: [ @app.infrastructure_widget_instance_repository.mysql_widget_instance_repository ]
+
+    app.application_widgets_instance_use_cases.update_widget_to_dashboard_use_case:
+        class: AppBundle\Application\WidgetsInstance\UseCases\UpdateWidgetToDashboardUseCase
+        arguments: [ @app.infrastructure_widget_instance_repository.mysql_widget_instance_repository ]
+
+    ## widget instance data
+    app.domain_widget_instances_data.widget_instance_data_factory:
+        class: AppBundle\Domain\WidgetInstancesData\WidgetInstanceDataFactory
+
+    app.application_widgets_instance_data_use_cases.fetch_widget_instance_data_use_case:
+        class: AppBundle\Application\WidgetsInstanceData\UseCases\FetchWidgetInstanceDataUseCase
+        arguments: [ @app.infrastructure_repository_widget_instance_data.redis_widget_instance_data_repository ]
+
+    app.application_widgets_instance_data_use_cases.generate_widget_instance_data_use_case:
+        class: AppBundle\Application\WidgetsInstanceData\UseCases\GenerateWidgetInstanceDataUseCase
+        arguments: [ @app.domain_widget_instances_data.widget_instance_data_factory, @app.infrastructure_repository_widget_instance_data.redis_widget_instance_data_repository]
+
+    app.infrastructure_repository_widget_instance_data.redis_widget_instance_data_repository:
+        class: AppBundle\Infrastructure\Repository\WidgetInstanceData\RedisWidgetInstanceDataRepository
+        arguments: [ @snc_redis.default ]
+
+    ## widget
+    app.application_dashboards_use_cases.list_widgets_use_case:
+        class: AppBundle\Application\Widgets\UseCases\ListWidgetsUseCase
+        arguments: [ @app.infrastructure_repository_widgets.mysql_widget_repository ]
+
+
+    app.application_widgets_use_cases.fetch_widget_use_case:
+        class: AppBundle\Application\Widgets\UseCases\FetchWidgetUseCase
+        arguments: [ @app.infrastructure_repository_widgets.mysql_widget_repository ]
+
+    app.application_widgets_instance_use_cases.delete_widget_instance_use_case:
+        class: AppBundle\Application\WidgetsInstance\UseCases\DeleteWidgetInstanceUseCase
+        arguments: [ @app.infrastructure_widget_instance_repository.mysql_widget_instance_repository ]
+
+    # repository
+
+    app.infrastructure_user.mysql_user_repository:
+        class: AppBundle\Infrastructure\Repository\Users\MysqlUserRepository
+        arguments: [ ]
+
+    app.infrastructure_dashboards.mysql_dasboard_repository:
+        class: AppBundle\Infrastructure\Repository\Dashboards\MysqlDasboardRepository
+
+    app.infrastructure_repository_widgets.mysql_widget_repository:
+        class: AppBundle\Infrastructure\Repository\Widgets\MysqlWidgetRepository
+
+    app.infrastructure_widget_instance_repository.mysql_widget_instance_repository:
+        class: AppBundle\Infrastructure\Repository\WidgetInstance\MysqlWidgetInstanceRepository
+
+    #events
+    app.infrastructure_repository_events.in_memory_domain_event_store:
+        class: AppBundle\Infrastructure\Repository\Events\InMemoryDomainEventStore
+        arguments: [ @app.infrastructure_repository_events.redis_events_repository ]
+
+    app.infrastructure_repository_events.redis_events_repository:
+        class: AppBundle\Infrastructure\Repository\Events\RedisEventsRepository
+        arguments: [ @snc_redis.default ]

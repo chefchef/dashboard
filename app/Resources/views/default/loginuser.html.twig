@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'AppBundle::form.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block body %}
+
+        <div id="container">
+            <div id="status" class="container">
+
+                {% if errors %}
+                <div class="alert alert-danger" role="alert">
+                    <ul style="list-style-type: none;">
+                        {%- for error in errors -%}
+                            <li> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{ error }}</li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <h2 class="form-signin-heading">Login In</h2>
+                <p>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_errors(form) }}
+                    {{ form_end(form) }}
+                </p>
+            </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include ':admin/partial:navigatorDashboard.html.twig' with {'admin':1} %}
+
+    {% include ':admin/partial:dashboard.html.twig' with {'admin':1} %}
+
+    <div id="container_widgets" class="container"></div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" data-main="{{ asset('js/mainAdmin.js') }}"
+            src="{{ asset('js/lib/requirejs/require.js') }}"></script>
+{% endblock %}
+
+{% block templates %}
+    {% include ':admin/templates:widget_instance.html.twig' with {'admin':1} %}
+    {% include ':admin/templates:widget_base.html.twig' %}
+
+{% endblock %}

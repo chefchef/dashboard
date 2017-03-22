@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": 1,
+    "node":1
+  },
+  "globals": {
+    "Backbone": 1,
+    "_": 1,
+    "$": 1
+  }
+}
