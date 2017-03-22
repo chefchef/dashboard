@@ -1,5 +1,5 @@
-dashboard
-=========
+dashboard Projecte final master UOC
+===================================
 
 Instruccions d'instal·lació de l'entorn de desenvolupament
 
@@ -39,4 +39,3 @@ Instruccions d'instal·lació de l'entorn de desenvolupament
 Volcar les dades del fitxer de /var/www/info/sql
 
 La URL de l'entorn de desenvolupament es : http://192.168.33.10/
-
